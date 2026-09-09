@@ -1,0 +1,95 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  z-index: 50;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 28px;
+}
+
+.header-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  font-size: 0.92rem;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ember), var(--violet));
+  transition: width 0.25s ease;
+}
+
+.header-nav a:hover {
+  color: var(--ink);
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+.header-toggles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+  transform: translateY(-1px);
+}
+
+.toggle-btn--icon {
+  padding: 7px;
+}
+
+@media (max-width: 760px) {
+  .header-nav {
+    display: none;
+  }
+}

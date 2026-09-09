@@ -1,0 +1,41 @@
+.about-body p {
+  max-width: 62ch;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.badge-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.badge:hover {
+  transform: translateY(-2px);
+  border-color: var(--pine);
+  color: var(--pine);
+}
+
+/* La última badge (Bombero voluntario / Volunteer firefighter) tematizada en rojo bomberil */
+.badge--fire {
+  border-color: #d32f2f;
+  color: #d32f2f;
+}
+
+.badge--fire:hover {
+  border-color: #d32f2f;
+  color: var(--white);
+  background: #d32f2f;
+}

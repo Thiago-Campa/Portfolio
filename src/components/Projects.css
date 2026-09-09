@@ -1,0 +1,204 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.project {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  background: var(--white);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -22px rgba(0, 0, 0, 0.35);
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.project-status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.project p {
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin-bottom: 16px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.project-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+
+.project-tags span:not(:last-child)::after {
+  content: '·';
+  margin-left: 8px;
+  color: var(--line);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+  width: fit-content;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ---------- Tema "web" (CIC-DB): paleta de desarrollo, mock de navegador ---------- */
+.project--web {
+  border-color: color-mix(in srgb, var(--pine) 40%, var(--line));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--pine) 6%, transparent), transparent 45%), var(--white);
+  padding-top: 0;
+}
+
+.project--web:hover {
+  border-color: var(--pine);
+}
+
+.browser-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  margin: 0 -28px 20px;
+  background: color-mix(in srgb, var(--pine) 10%, var(--white));
+  border-bottom: 1px solid color-mix(in srgb, var(--pine) 25%, var(--line));
+}
+
+.browser-chrome .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pine) 35%, var(--line));
+}
+
+.browser-url {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.project--web .project-icon {
+  color: var(--pine);
+}
+
+.project--web .project-status--web {
+  background: var(--status-progress-bg);
+  color: var(--pine);
+}
+
+.project--web .project-link {
+  font-family: var(--font-mono);
+}
+
+.project--web .project-link:hover {
+  color: var(--pine);
+  border-color: var(--pine);
+}
+
+/* ---------- Tema "fire" (cuartel de bomberos): rojo y franjas de peligro ---------- */
+.project--fire {
+  border-color: color-mix(in srgb, #d32f2f 45%, var(--line));
+  border-style: dashed;
+  background: linear-gradient(180deg, rgba(211, 47, 47, 0.07), transparent 45%), var(--white);
+}
+
+.project--fire:hover {
+  border-color: #d32f2f;
+}
+
+.hazard-stripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #d32f2f,
+    #d32f2f 10px,
+    #ffc107 10px,
+    #ffc107 20px
+  );
+}
+
+.project--fire .project-icon {
+  color: #d32f2f;
+}
+
+.project--fire .project-status--fire {
+  background: rgba(211, 47, 47, 0.14);
+  color: #d32f2f;
+}
+
+.project-pending {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #d32f2f;
+  background: rgba(211, 47, 47, 0.12);
+  animation: siren 1.6s ease-in-out infinite;
+}
+
+@keyframes siren {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(211, 47, 47, 0);
+  }
+}

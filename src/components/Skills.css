@@ -1,0 +1,58 @@
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
+}
+
+.skill-group h3 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--pine);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 0.88rem;
+  padding: 7px 13px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  cursor: default;
+}
+
+.tag:hover {
+  transform: translateY(-3px) rotate(-1deg);
+  color: var(--white);
+}
+
+.tag--accent-0:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+}
+.tag--accent-1:hover {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+.tag--accent-2:hover {
+  background: var(--pine);
+  border-color: var(--pine);
+}
+.tag--accent-3:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+}
