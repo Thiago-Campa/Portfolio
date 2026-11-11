@@ -1,40 +1,21 @@
 :root {
-  --paper: #f4f2ed;
-  --ink: #171b24;
-  --ink-soft: #545c6b;
-  --ember: #ff5a2e;
-  --ember-glow: rgba(255, 90, 46, 0.35);
-  --amber: #ffb020;
-  --pine: #12b886;
-  --violet: #7c5cfc;
-  --line: #dcd8ce;
-  --white: #fffefb;
-  --card-tint: rgba(23, 27, 36, 0.03);
-  --status-live-bg: #ffe7dd;
-  --status-progress-bg: #dbf5eb;
-  --radius: 4px;
-  --font-display: 'Sora', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --paper: #e7e9ec; --ink: #121c2b; --ink-soft: #4d5b6e;
+  --ember: #d6261c; --ember-glow: rgba(214, 38, 28, 0.3);
+  --amber: #f0cf1c; --pine: #0f9d8a; --violet: #3b5fc0;
+  --line: #c3c9d1; --white: #f5f6f7; --card-tint: rgba(18, 28, 43, 0.04);
+  --status-live-bg: #fbdcd9; --status-progress-bg: #d3f0ea;
+  --radius: 3px;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
-
   color-scheme: light;
 }
-
 [data-theme='dark'] {
-  --paper: #12141a;
-  --ink: #edece7;
-  --ink-soft: #9aa2b1;
-  --ember: #ff7a52;
-  --ember-glow: rgba(255, 122, 82, 0.3);
-  --amber: #ffc35c;
-  --pine: #3fd6a8;
-  --violet: #9a89ff;
-  --line: #2a2e38;
-  --white: #1a1d25;
-  --card-tint: rgba(255, 255, 255, 0.03);
-  --status-live-bg: rgba(255, 122, 82, 0.16);
-  --status-progress-bg: rgba(63, 214, 168, 0.16);
-
+  --paper: #0c1420; --ink: #e9eef4; --ink-soft: #90a2b6;
+  --ember: #ff4b3e; --ember-glow: rgba(255, 75, 62, 0.3);
+  --amber: #ffd93d; --pine: #2fd5bd; --violet: #7f9bff;
+  --line: #223146; --white: #13202f; --card-tint: rgba(255, 255, 255, 0.04);
+  --status-live-bg: rgba(255, 75, 62, 0.16); --status-progress-bg: rgba(47, 213, 189, 0.16);
   color-scheme: dark;
 }
 
@@ -53,6 +34,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.55;
+  font-size: 1.05rem;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background 0.3s ease, color 0.3s ease;
@@ -109,8 +91,9 @@ section {
 
 h2 {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.7rem;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
   letter-spacing: -0.01em;
 }
 

@@ -1,87 +1,52 @@
-import { motion } from 'framer-motion'
 import { Code2, Flame, ExternalLink, Terminal, Siren } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { projectsMeta } from '../data.js'
+import { useContent, tr } from '../context/ContentContext.jsx'
 import './Projects.css'
 
 const ICONS = { Code2, Flame }
+const host = (u) => { try { return new URL(u).host } catch { return 'localhost' } }
 
 export default function Projects() {
-  const { t } = useLanguage()
-  const { projects } = t
+  const { t, lang } = useLanguage()
+  const { content } = useContent()
 
   return (
     <section id="projects">
-      <motion.div
-        className="wrap"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="section-head">
-          <span className="section-num">04</span>
-          <h2>{projects.heading}</h2>
-        </div>
-
+      <div className="wrap">
+        <div className="section-head"><h2>{t.projects.heading}</h2></div>
         <div className="projects">
-          {projects.items.map((project, i) => {
-            const meta = projectsMeta[i]
-            const Icon = ICONS[meta.icon]
-
+          {content.projects.map((m) => {
+            const p = tr(m, lang)
+            const Icon = ICONS[m.icon] || Code2
+            const fire = m.theme === 'fire'
             return (
-              <div key={meta.key} className={`project project--${meta.theme}`}>
-                {meta.theme === 'web' && (
+              <div key={m.id} className={`project project--${fire ? 'fire' : 'web'}`}>
+                {!fire && (
                   <div className="browser-chrome" aria-hidden="true">
-                    <span className="dot" />
-                    <span className="dot" />
-                    <span className="dot" />
-                    <div className="browser-url">
-                      <Terminal size={11} />
-                      <span>cic-db.web.app</span>
-                    </div>
+                    <span className="dot" /><span className="dot" /><span className="dot" />
+                    <div className="browser-url"><Terminal size={11} /><span>{m.url ? host(m.url) : 'localhost'}</span></div>
                   </div>
                 )}
-
-                {meta.theme === 'fire' && (
-                  <div className="hazard-stripe" aria-hidden="true" />
-                )}
-
+                {fire && <div className="hazard-stripe" aria-hidden="true" />}
                 <div className="project-top">
                   <div className="project-title-row">
-                    <span className="project-icon">
-                      <Icon size={18} />
-                    </span>
-                    <h3>{project.title}</h3>
+                    <span className="project-icon"><Icon size={18} /></span>
+                    <h3>{p.title}</h3>
                   </div>
-                  <span className={`project-status project-status--${meta.theme}`}>{project.status}</span>
+                  <span className={`project-status project-status--${fire ? 'fire' : 'web'}`}>{p.status}</span>
                 </div>
-
-                <p>{project.description}</p>
-
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-
-                {meta.url && (
-                  <a className="project-link" href={meta.url} target="_blank" rel="noopener noreferrer">
-                    {project.linkLabel}
-                    <ExternalLink size={14} />
-                  </a>
-                )}
-
-                {!meta.url && meta.theme === 'fire' && (
-                  <span className="project-pending">
-                    <Siren size={14} />
-                  </span>
-                )}
+                <p>{p.description}</p>
+                <div className="project-tags">{(p.tags || []).map((tag, i) => <span key={i}>{tag}</span>)}</div>
+                {m.url ? (
+                  <a className="project-link" href={m.url} target="_blank" rel="noopener noreferrer">{p.linkLabel}<ExternalLink size={14} /></a>
+                ) : fire ? (
+                  <span className="project-pending"><Siren size={14} /></span>
+                ) : null}
               </div>
             )
           })}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
