@@ -1,48 +1,43 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Plus, Check } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { experienceMeta } from '../data.js'
-import './Experience.css'
+import { useContent, tr } from '../context/ContentContext.jsx'
 
 export default function Experience() {
-  const { t } = useLanguage()
-  const { experience } = t
+  const { t, lang } = useLanguage()
+  const { content } = useContent()
+  const [open, setOpen] = useState(() => content.experience.find((j) => j.current)?.id ?? null)
 
   return (
     <section id="experience">
-      <motion.div
-        className="wrap"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="section-head">
-          <span className="section-num">02</span>
-          <h2>{experience.heading}</h2>
-        </div>
-
-        <div className="timeline">
-          {experience.jobs.map((job, i) => {
-            const meta = experienceMeta[i]
-            return (
-              <div key={i} className={`job${meta.current ? ' job--current' : ''}`}>
-                <div className="job-meta">
-                  <span className="job-role">{job.role}</span>
-                  <span className="job-org">{meta.org}</span>
-                  {meta.current && <span className="now-tag">{experience.currentTag}</span>}
-                </div>
-                <div className="job-time">{meta.time}</div>
-                <div className="job-place">{meta.place}</div>
-                <ul>
-                  {job.tasks.map((task, j) => (
-                    <li key={j}>{task}</li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
-        </div>
-      </motion.div>
+      <div className="wrap">
+        <div className="section-head"><h2>{t.experience.heading}</h2></div>
+        {content.experience.map((job) => {
+          const j = tr(job, lang)
+          const isOpen = open === job.id
+          return (
+            <div key={job.id} className={`xp${isOpen ? ' open' : ''}`}>
+              <button type="button" className="xp-head" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : job.id)}>
+                <span className="xp-org">{job.org}{job.current && <em className="now-tag">{t.experience.currentTag}</em>}</span>
+                <span className="xp-role">{j.role}</span>
+                <span className="xp-time">{job.time}</span>
+                <Plus className="xp-plus" size={22} />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div className="xp-body" initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}>
+                    <div className="xp-inner">
+                      <p className="xp-place">{job.place}</p>
+                      <ul>{(j.tasks || []).map((k, n) => <li key={n} style={{ '--d': `${n * 90 + 150}ms` }}><Check size={16} />{k}</li>)}</ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }

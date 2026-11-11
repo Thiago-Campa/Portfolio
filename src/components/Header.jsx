@@ -1,17 +1,18 @@
 import { Moon, Sun, Languages } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext.jsx'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { profile } from '../data.js'
+import { useContent } from '../context/ContentContext.jsx'
 import './Header.css'
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme()
   const { t, toggleLang } = useLanguage()
+  const { content } = useContent()
 
   return (
     <header className="header">
       <div className="wrap header-inner">
-        <div className="header-name">{profile.name}</div>
+        <div className="header-name">{content.profile.name}</div>
 
         <nav className="header-nav">
           <a href="#about">{t.nav.about}</a>

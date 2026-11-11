@@ -54,3 +54,13 @@ src/
 - **Datos que no cambian de idioma** (fechas, orgs, urls, temas visuales): `src/data.js`.
 - **Colores**: variables CSS en `src/styles/index.css`, con su versión oscura bajo `[data-theme='dark']`.
 - **Nuevo proyecto**: agregá una entrada en `projectsMeta` (data.js) y su traducción correspondiente en `projects.items` (i18n.js, en ambos idiomas). El campo `theme` acepta `"web"` o `"fire"`; para un tercer estilo hay que sumar sus reglas en `Projects.css`.
+
+## Panel privado (editar contenido)
+
+Tocá tres veces seguidas el **©** del footer. La primera vez te pide crear una contraseña (se guarda como hash en el navegador).
+Desde ahí podés modificar, agregar y eliminar proyectos, sobre mí, experiencia, skills y contacto (todo pide confirmación).
+
+- Los cambios se guardan en **este navegador** (localStorage). Para publicarlos: botón **content.json** y reemplazá `src/content.json`.
+- Todo el contenido vive ahora en `src/content.json`; `src/i18n.js` solo tiene los textos fijos de la interfaz.
+- Si olvidás la contraseña, borrá los datos del sitio en el navegador (también se pierden las ediciones locales).
+- La contraseña es solo del lado del cliente: sirve para ocultar el panel, no es seguridad real.
